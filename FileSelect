@@ -1,0 +1,17 @@
+  onFileSelected(fileEvent) {
+    this.fileName = '';
+    this.file = fileEvent.target.files[0];
+    //Office.context.mailbox.userProfile.emailAddress
+    if (this.file.type === 'application/pdf') {
+      if (this.file && this.file.size < this.fileSizeLimit) {
+        this.fileName = this.file.name;
+        this.invalidFile = false;
+      } else {
+        this.fileAlert = "File size exceed the limit " + this.fileSizeLimit / 1000000 + "MB";
+        this.invalidFile = true;
+      }
+    } else {
+      this.fileAlert = 'File type not supported. Please select only PDF file!'
+      this.invalidFile = true;
+    }
+  }
